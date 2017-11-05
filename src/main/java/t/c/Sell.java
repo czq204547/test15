@@ -46,12 +46,9 @@ public class Sell {
     @ResponseBody
     public Message1 apilongin(User user, Model model, HttpServletResponse response,HttpSession session)throws Exception
     {
-        System.out.println(user.getUserName());
-        System.out.println(user.getPassword());
         message1=new Message1();
         User u=dataAccess.login(user);
         if(u !=null) {
-            System.out.println(u.getUserType());
             model.addAttribute("user", u);
             message1=new Message1(200,"ok",true);
         }
