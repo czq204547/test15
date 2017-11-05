@@ -1,7 +1,6 @@
 package t.c;
 
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -44,7 +43,8 @@ public class Sell {
     }
 
     @RequestMapping(value="/api/login",method = RequestMethod.POST)
-    public void apilongin(User user, Model model, HttpServletResponse response,HttpSession session)throws Exception
+    @ResponseBody
+    public Message1 apilongin(User user, Model model, HttpServletResponse response,HttpSession session)throws Exception
     {
 
         message1=new Message1();
@@ -53,9 +53,7 @@ public class Sell {
             model.addAttribute("user", u);
             message1=new Message1(200,"ok",true);
         }
-        ObjectMapper o=new ObjectMapper();
-        response.getWriter().println(o.writeValueAsString(message1));
-
+     return message1;
     }
 
     @RequestMapping("index")
