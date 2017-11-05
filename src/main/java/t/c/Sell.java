@@ -1,6 +1,7 @@
 package t.c;
 
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,8 +25,8 @@ import java.util.List;
 @Controller
 @SessionAttributes("user")
 public class Sell {
-    //@Autowired
-    //private DataAccess dataAccess;
+    @Autowired
+    private DataAccess dataAccess;
 
     private Message1 message1;
 
@@ -41,21 +42,22 @@ public class Sell {
         sessionStatus.setComplete();
         return "redirect:/login";
     }
-/*
+
     @RequestMapping(value="/api/login",method = RequestMethod.POST)
-    @ResponseBody
-    public Message1 apilongin(User user, Model model, HttpServletResponse response,HttpSession session)throws Exception
+    public void apilongin(User user, Model model, HttpServletResponse response,HttpSession session)throws Exception
     {
+
         message1=new Message1();
         User u=dataAccess.login(user);
         if(u !=null) {
             model.addAttribute("user", u);
             message1=new Message1(200,"ok",true);
         }
-        return message1;
+        ObjectMapper o=new ObjectMapper();
+        response.getWriter().println(o.writeValueAsString(message1));
 
     }
-*/
+
     @RequestMapping("index")
     public String index(){
         return "index";
