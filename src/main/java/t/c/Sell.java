@@ -24,8 +24,8 @@ import java.util.List;
 @Controller
 @SessionAttributes("user")
 public class Sell {
-    @Autowired
-    private DataAccess dataAccess;
+    //@Autowired
+    //private DataAccess dataAccess;
 
     private Message1 message1;
 
@@ -41,7 +41,7 @@ public class Sell {
         sessionStatus.setComplete();
         return "redirect:/login";
     }
-
+/*
     @RequestMapping(value="/api/login",method = RequestMethod.POST)
     @ResponseBody
     public Message1 apilongin(User user, Model model, HttpServletResponse response,HttpSession session)throws Exception
@@ -55,6 +55,7 @@ public class Sell {
         }
      return message1;
     }
+    */
 
     @RequestMapping("index")
     public String index(){
